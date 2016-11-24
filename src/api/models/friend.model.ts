@@ -6,4 +6,4 @@ const friendSchema = new mongoose.Schema({
     lastName: {type: String},
 });
 
-export const Friend  = mongoose.model('friend', friendSchema);
+export const FriendModel  = mongoose.model('friend', friendSchema);
