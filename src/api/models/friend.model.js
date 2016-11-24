@@ -5,4 +5,4 @@ var friendSchema = new mongoose.Schema({
     firstName: { type: String },
     lastName: { type: String },
 });
-exports.friendModel = mongoose.model('friend', friendSchema);
+exports.Friend = mongoose.model('friend', friendSchema);
