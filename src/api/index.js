@@ -1,23 +1,25 @@
 "use strict";
 var express = require('express');
 var mongoose = require('mongoose');
-var friend_model_1 = require('./models/friend.model');
+var friend_1 = require('./classes/friend');
 var port = 3000;
+var throwError = function (res, e) { res.send(500, { error: e }); };
 var app = express();
 app.get('/getFriends', function (req, res) {
-    var query = friend_model_1.FriendModel.find({});
-    query.exec(function (e, result) {
-        console.log('result', result);
-        res.json(result);
-    });
+    var friend = new friend_1.Friend();
+    friend.getFriends(req.query).then(function (data) { res.json(data); }, function (e) { throwError(res, e); });
+});
+app.post('/saveFriend', function (req, res) {
+    var friend = new friend_1.Friend();
+    friend.saveFriend(req.query).then(function (data) { res.json(data); }, function (e) { throwError(res, e); });
+});
+app.post('/updateFriend', function (req, res) {
+    var friend = new friend_1.Friend();
+    friend.updateFriend(req.query).then(function (data) { res.json(data); }, function (e) { throwError(res, e); });
 });
 mongoose.connect('mongodb://localhost/friends', function (error, res) {
-    if (error) {
+    if (error)
         console.log('ERROR: ' + error);
-    }
-    //const dan = new FriendModel({id: 1, firstName: 'dan', lastName: 'ges'});
-    //dan.save();
-    //const db = mongoose.connection;
-    //FriendModel.findOne({id: 1}, (e, result)=>{ console.log(result) });
-    app.listen(port, function () { return console.log('listening on port ' + port); });
+    app.listen(port, function () { console.log('listening on port ' + port); });
 });
+//# sourceMappingURL=index.js.map

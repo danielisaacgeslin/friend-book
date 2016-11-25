@@ -1,6 +1,16 @@
 {
     "compilerOptions": {
+        "module": "commonjs",
         "target": "es5",
-        "watch": true
+        "watch": true,
+        "noImplicitAny": true,
+        "removeComments": true,
+        "moduleResolution": "node",
+        "preserveConstEnums": true,
+        "sourceMap": true,
+        "rootDir": "./",
+        "typeRoots": [
+            "./types"
+        ]
     }
 }
